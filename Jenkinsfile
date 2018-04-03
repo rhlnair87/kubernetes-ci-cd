@@ -13,11 +13,11 @@ node {
 
     stage "Build"
     
-        sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
+        sh "sudo docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
 
-        sh "docker push ${imageName}"
+        sh "sudo docker push ${imageName}"
 
     stage "Deploy"
 
