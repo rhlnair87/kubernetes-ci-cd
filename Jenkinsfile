@@ -13,13 +13,13 @@ node {
 
     stage "Build"
     
-        sh "sudo docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
+        sh "sudo docker build -t ${imageName} -f applications/nginx-app/Dockerfile applications/nginx-app"
     
     stage "Push"
 
         sh "sudo docker push ${imageName}"
 
     stage "Deploy"
-        sh "sed 's#rhlnair87/mytest:latest#'$BUILDIMG'#' applications/hello-kenzan/k8s/deployment.yaml | kubectl apply --namespace=coreservices-prod -f -"
+        sh "sed 's#rhlnair87/mytest:latest#'$BUILDIMG'#' applications/nginx-app/k8s/deployment.yaml | kubectl apply --namespace=coreservices-prod -f -"
         sh "kubectl rollout status deployment/mytest --namespace=coreservices-prod"
 }
