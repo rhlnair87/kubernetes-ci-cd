@@ -14,6 +14,11 @@ node {
     stage "Test"
     
         sh "sudo docker build -t ${imageName}.test -f applications/nginx-app/Dockerfile.test applications/nginx-app"
+        sh "sudo docker run ${imageName}.test -n ${imageName}.test"
+
+    stage "Cleanup"
+        sh "sudo docker stop ${imageName}.test"
+        sh "sudo docker rm ${imageName}.test"
     
     stage "Build"
         sh "sudo docker build -t ${imageName} -f applications/nginx-app/Dockerfile applications/nginx-app"
