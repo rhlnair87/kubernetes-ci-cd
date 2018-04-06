@@ -11,8 +11,11 @@ node {
     imageName = "rhlnair87/mytest:${tag}"
     env.BUILDIMG=imageName
 
-    stage "Build"
+    stage "Test"
     
+        sh "sudo docker build -t ${imageName}.test -f applications/nginx-app/Dockerfile.test applications/nginx-app"
+    
+    stage "Build"
         sh "sudo docker build -t ${imageName} -f applications/nginx-app/Dockerfile applications/nginx-app"
     
     stage "Push"

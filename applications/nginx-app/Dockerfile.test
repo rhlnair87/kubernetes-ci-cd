@@ -1,0 +1,9 @@
+FROM nginx:latest
+
+COPY index.html /usr/share/nginx/html/index.html
+COPY DockerFileEx.jpg /usr/share/nginx/html/DockerFileEx.jpg
+COPY test.sh /
+#testing the container
+RUN apt-get update && apt-get install -yq curl && apt-get clean
+WORKDIR /test
+CMD ["bash", "test.sh"]
