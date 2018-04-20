@@ -28,6 +28,6 @@ node {
         sh "sudo docker push ${imageName}"
 
     stage "Deploy"
-        sh "sed 's#rhlnair87/mytest:latest#'$BUILDIMG'#' applications/nginx-app/k8s/deployment.yaml | kubectl apply --namespace=coreservices-prod -f -"
-        sh "kubectl rollout status deployment/mytest --namespace=coreservices-prod"
+        sh "sed 's#rhlnair87/mytest:latest#'$BUILDIMG'#' applications/nginx-app/k8s/deployment.yaml | kubectl apply --namespace=core-svc -f -"
+        sh "kubectl rollout status deployment/mytest --namespace=core-svc"
 }
