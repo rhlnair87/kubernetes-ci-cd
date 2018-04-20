@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rmq-app
+  namespace: core-svc
+  labels:
+    app: rmq-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmq-app
+  template:
+    metadata:
+      labels:
+        app: rmq-app
+    spec:
+      containers:
+      - name: rmq-app
+        image: rhlnair87/rabbit-tester
