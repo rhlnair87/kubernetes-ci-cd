@@ -1,0 +1,13 @@
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1beta1
+  metadata:
+    name: core-svc-manager-binding
+    namespace: core-svc
+  subjects:
+  - kind: ServiceAccount
+    name: rahul
+    apiGroup: ""
+  roleRef:
+    kind: Role
+    name: core-svc-management
+    apiGroup: ""
