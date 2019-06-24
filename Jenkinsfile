@@ -32,5 +32,5 @@ node {
         sh "kubectl rollout status deployment/mytest --namespace=core-svc"
     stage "Smoke Test"
         //sh "curl http://$(kubectl get svc -n core-svc mytest --output=json | jq -j '.spec.clusterIP')|  grep Hello-Rahul &> /dev/null"
-        sh "IP=$(kubectl get svc -n core-svc mytest --output=json | jq -j '.spec.clusterIP')"
+        sh "kubectl get svc -n core-svc mytest --output=json | jq -j '.spec.clusterIP' |  xargs  curl | grep Hello-Rahul"
 }
