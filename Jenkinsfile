@@ -31,5 +31,6 @@ node {
         sh "sed 's#rhlnair87/mytest:latest#'$BUILDIMG'#' applications/nginx-app/k8s/deployment.yaml | kubectl apply --namespace=core-svc -f -"
         sh "kubectl rollout status deployment/mytest --namespace=core-svc"
     stage "Smoke Test"
-        sh "curl http://$(kubectl get svc -n core-svc mytest --output=json | jq -j '.spec.clusterIP')|  grep Hello-Rahul &> /dev/null"
+        //sh "curl http://$(kubectl get svc -n core-svc mytest --output=json | jq -j '.spec.clusterIP')|  grep Hello-Rahul &> /dev/null"
+        sh "IP=$(kubectl get svc -n core-svc mytest --output=json | jq -j '.spec.clusterIP')"
 }
